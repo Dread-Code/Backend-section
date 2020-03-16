@@ -9,11 +9,15 @@ const app  = require('.');
 const { HomeService } = require('../services');
 
 //Controllers
-const { HomeController } = require('../controllers')
+const { HomeController } = require('../controllers');
 
 //Routes
-const { HomeRoutes } = require('../routes/index.routes')
+const { HomeRoutes } = require('../routes/index.routes');
 const Routes = require('../routes');
+
+//models
+const { User,Idea,Comment} = require('../models');
+
 
 const container = createContainer();
 
@@ -33,7 +37,12 @@ container //crear nuevos tipos de iyeccion
 })
 .register({
     HomeRoutes: asFunction(HomeRoutes).singleton()
-});
+}).register({
+    User:asValue(User),
+    Idea:asValue(Idea),
+    Comment:asValue(Comment),
+
+})
 
 
 module.exports  = container;
