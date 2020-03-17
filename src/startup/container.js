@@ -18,6 +18,10 @@ const Routes = require('../routes');
 //models
 const { User,Idea,Comment} = require('../models');
 
+//Repositories
+
+const {UserRepository,CommentRepository,IdeaRepository} = require('../repositories');
+
 
 const container = createContainer();
 
@@ -42,7 +46,13 @@ container //crear nuevos tipos de iyeccion
     Idea:asValue(Idea),
     Comment:asValue(Comment),
 
-})
+}).register(
+    {
+        UserRepository: asClass(UserRepository).singleton(),
+        IdeaRepository: asClass(IdeaRepository).singleton(),
+        CommentRepository: asClass(CommentRepository).singleton()
+    }
+)
 
 
 module.exports  = container;
