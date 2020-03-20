@@ -6,7 +6,10 @@ const config = require('../config');
 const app  = require('.');
 
 //services
-const { HomeService } = require('../services');
+const { HomeService,
+        UserService,
+        IdeaService,
+        CommentService } = require('../services');
 
 //Controllers
 const { HomeController } = require('../controllers');
@@ -33,7 +36,10 @@ container //crear nuevos tipos de iyeccion
     config : asValue(config)
 })
 .register({
-    HomeService: asClass(HomeService).singleton()// singleton significa que sera la misma insancia de la clase
+    HomeService: asClass(HomeService).singleton(),// singleton significa que sera la misma insancia de la clase
+    UserService: asClass(UserService).singleton(),
+    IdeaService: asClass(IdeaService).singleton(),
+    CommentService: asClass(CommentService).singleton()
 })
 .register({
     HomeController: asClass(HomeController.bind(HomeController)).singleton() /*.bind se hace oara que express a la hora de llamar 
