@@ -24,7 +24,8 @@ class BaseRepository { /// plantilla culla responsabilidad va a ser heredada por
 
 
     async delete(id){
-        return await this.model.findByIdAndDelete(id);
+        await this.model.findByIdAndDelete(id);
+        return true;
     }
 
 }

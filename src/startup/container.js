@@ -12,7 +12,10 @@ const { HomeService,
         CommentService } = require('../services');
 
 //Controllers
-const { HomeController } = require('../controllers');
+const { HomeController,
+        UserController,
+        IdeaController,
+        CommentController } = require('../controllers');
 
 //Routes
 const { HomeRoutes } = require('../routes/index.routes');
@@ -42,8 +45,11 @@ container //crear nuevos tipos de iyeccion
     CommentService: asClass(CommentService).singleton()
 })
 .register({
-    HomeController: asClass(HomeController.bind(HomeController)).singleton() /*.bind se hace oara que express a la hora de llamar 
+    HomeController: asClass(HomeController.bind(HomeController)).singleton(), /*.bind se hace oara que express a la hora de llamar 
     el controlar el scope cambia se hace esto para que el scope se mantenga  */
+    UserController: asClass(UserController.bind(UserController)).singleton(),
+    CommentController: asClass(CommentController.bind(CommentController)).singleton(),
+    IdeaController: asClass(IdeaController.bind(IdeaController)).singleton()
 })
 .register({
     HomeRoutes: asFunction(HomeRoutes).singleton()
