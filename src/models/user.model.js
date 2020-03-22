@@ -14,7 +14,7 @@ const { compareSync, hashSync, genSaltSync } = require('bcryptjs');
           type:String,
           required: true
       },
-      userName:{
+      username:{
           type: String,
           required: true
       },
