@@ -1,4 +1,4 @@
-let _ideaSerevice = null;
+let _ideaService = null;
 
 class IdeaController{
     constructor({IdeaService}){
