@@ -12,13 +12,14 @@ class IdeaController{
     }
 
     async getAll(req,res){
-        const ideas = await _ideaService.getAll();
+        const {pageSize,pageNum} = req.query;
+        const ideas = await _ideaService.getAll(pageSize,pageNum);
         return res.send(ideas);
     }
 
     async create(req,res){
         const {body} = req;
-        const createIdea = await _ideaSerevice.create(body);
+        const createIdea = await _ideaService.create(body);
         return res.status(201).send(createIdea);
     }
     
@@ -37,19 +38,19 @@ class IdeaController{
 
     async getUserIdeas(){
         const { userId } = req.params;
-        const ideas = await _ideaSerevice.getUserIdeas(userId);
+        const ideas = await _ideaService.getUserIdeas(userId);
         return res.send(ideas);
     }
 
     async upVoteIdea(req,res){
         const {ideaId} = req.params;
-        const idea = await _ideaSerevice.upVoteIdea(ideaId);
+        const idea = await _ideaService.upVoteIdea(ideaId);
         return res.send(idea);
     }
 
     async downVoteIdea(req,res){
         const {ideaId} = req.params;
-        const idea = await _ideaSerevice.downVoteIdea(ideaId);
+        const idea = await _ideaService.downVoteIdea(ideaId);
         return res.send(idea);
     }
 

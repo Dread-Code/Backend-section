@@ -8,9 +8,12 @@ class BaseRepository { /// plantilla culla responsabilidad va a ser heredada por
         return await this.model.findById(id);
     }
 
-    async getAll(){// todas las colecciones 
-        
-        return await this.model.find();
+    async getAll(pageSize = 5, pageNum = 1){// todas las colecciones 
+        const skips = pageSize * (pageNum - 1)
+        return await this.model
+            .find()
+            .skip(skips)
+            .limit(pageSize);
     }
 
     async create(entity){
